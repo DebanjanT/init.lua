@@ -1,4 +1,3 @@
-vim.opt.guifont = "FiraCode Nerd Font:h12"
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""

@@ -29,6 +29,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
+                "clangd",
                 "gopls",
             },
             handlers = {
@@ -39,13 +40,32 @@ return {
                     }
                 end,
 
+                ["clangd"] = function ()
+                    local lspconfig = require("lspconfig")
+
+                    lspconfig.clangd.setup {
+                        capabilities = capabilities,
+                        cmd = { "clangd", "--background-index" },
+                        filetypes = { "c", "cpp", "objc", "objcpp" },
+                        root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+                    }
+                end;
+
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
+
                     lspconfig.lua_ls.setup {
                         capabilities = capabilities,
+
                         settings = {
-                            Lua = {
-				    runtime = { version = "Lua 5.1" },
+                            format = {
+                                enable = true,
+                                defaultConfig = {
+                                    indent_style = 'space',
+                                    indent_size = '4',
+                                },
+                            },   Lua = {
+                                runtime = { version = "Lua 5.1" },
                                 diagnostics = {
                                     globals = { "vim", "it", "describe", "before_each", "after_each" },
                                 }
@@ -74,8 +94,8 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
             }, {
-                { name = 'buffer' },
-            })
+                    { name = 'buffer' },
+                })
         })
 
         vim.diagnostic.config({
