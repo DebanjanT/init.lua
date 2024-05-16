@@ -26,6 +26,8 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
+                "htmx",
+                "html",
                 "lua_ls",
                 "rust_analyzer",
                 "tsserver",
@@ -50,6 +52,22 @@ return {
                         root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
                     }
                 end;
+
+                ["html"] = function()
+                    local lspconfig = require("lspconfig")
+
+                    lspconfig.html.setup {
+                        capabilities = capabilities,
+                    }
+                end,
+
+                ["htmx"] = function()
+                    local lspconfig = require("lspconfig")
+
+                    lspconfig.htmx.setup {
+                        capabilities = capabilities,
+                    }
+                end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
