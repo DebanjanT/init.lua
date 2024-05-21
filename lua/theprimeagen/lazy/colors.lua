@@ -1,6 +1,7 @@
 return {
-	"EdenEast/nightfox.nvim",
+	"blazkowolf/gruber-darker.nvim",
 	config = function()
-		vim.cmd("colorscheme carbonfox")
+		vim.cmd("colorscheme gruber-darker")
+
 	end,
 }
