@@ -1,6 +1,7 @@
 return {
-    "blazkowolf/gruber-darker.nvim",
+    "morhetz/gruvbox",
     config = function()
-        vim.cmd("colorscheme gruber-darker")
+        vim.cmd("colorscheme gruvbox")
     end,
 }
+
