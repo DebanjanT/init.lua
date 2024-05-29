@@ -9,6 +9,3 @@ Tsoding Minimal yellow white dark theme
       end
 
 ```
-
-
-
